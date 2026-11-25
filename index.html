@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NEXO // Streetwear & Indumentaria Urbana</title>
+  
+  <!-- Google Fonts: Bebas Neue, Montserrat & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            nexo: {
+              black: '#09090b',
+              card: '#111113',
+              border: '#222226',
+              violet: '#a855f7',
+              violetDark: '#7e22ce',
+              cyan: '#06b6d4',
+              cyanBright: '#22d3ee',
+            }
+          },
+          fontFamily: {
+            display: ['"Bebas Neue"', 'sans-serif'],
+            heading: ['"Montserrat"', 'sans-serif'],
+            sans: ['"Inter"', 'sans-serif'],
+          },
+          backgroundImage: {
+            'cyber-grid': 'linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #09090b;
+      color: #ffffff;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #09090b;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #27272a;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #a855f7;
+    }
+
+    /* Cyber Glitch & Neon Glow Utilities */
+    .neon-glow-violet {
+      box-shadow: 0 0 20px rgba(168, 85, 247, 0.25);
+    }
+    .neon-glow-cyan {
+      box-shadow: 0 0 20px rgba(6, 182, 212, 0.25);
+    }
+    .text-gradient-cyber {
+      background: linear-gradient(90deg, #ffffff 0%, #22d3ee 50%, #a855f7 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Marquee Animation */
+    @keyframes marquee {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
+    .animate-marquee {
+      display: flex;
+      width: max-content;
+      animation: marquee 24s linear infinite;
+    }
+    .animate-marquee:hover {
+      animation-play-state: paused;
+    }
+
+    /* Frosted Ziplock Effect */
+    .ziplock-bag {
+      background: linear-gradient(135deg, rgba(255,255,255,0.09) 0%, rgba(255,255,255,0.02) 50%, rgba(6,182,212,0.06) 100%);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow: inset 0 1px 1px rgba(255,255,255,0.25), 0 20px 40px rgba(0,0,0,0.6);
+    }
+  </style>
+</head>
+<body class="bg-nexo-black text-white antialiased selection:bg-nexo-violet selection:text-white">
+
+  <!-- Toast Notification Container (Replaces alert()) -->
+  <div id="toast-container" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 flex flex-col gap-2 pointer-events-none w-11/12 max-w-md"></div>
+
+  <!-- Top Announcement Ticker -->
+  <div class="bg-gradient-to-r from-nexo-violetDark via-nexo-violet to-nexo-cyan text-white text-xs font-heading tracking-wider uppercase py-1.5 overflow-hidden border-b border-white/10">
+    <div class="animate-marquee flex items-center gap-8">
+      <span>⚡ DROP 01 DISPONIBLE — TIRADAS LIMITADAS</span>
+      <span>•</span>
+      <span>🎁 STICKERS EXCLUSIVOS DE REGALO EN CADA COMPRA</span>
+      <span>•</span>
+      <span>🔥 PROMO ESTUDIANTES: LLEVANDO 2+ PRENDAS TENÉS 10% OFF</span>
+      <span>•</span>
+      <span>👕 ALGODÓN PEINADO 24/1 + ESTAMPADO DTF DE ALTA DURABILIDAD</span>
+      <span>•</span>
+      <span>⚡ DROP 01 DISPONIBLE — TIRADAS LIMITADAS</span>
+      <span>•</span>
+      <span>🎁 STICKERS EXCLUSIVOS DE REGALO EN CADA COMPRA</span>
+      <span>•</span>
+      <span>🔥 PROMO ESTUDIANTES: LLEVANDO 2+ PRENDAS TENÉS 10% OFF</span>
+      <span>•</span>
+      <span>👕 ALGODÓN PEINADO 24/1 + ESTAMPADO DTF DE ALTA DURABILIDAD</span>
+    </div>
+  </div>
+
+  <!-- Sticky Navbar -->
+  <header class="sticky top-0 z-40 bg-nexo-black/85 backdrop-blur-md border-b border-nexo-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <!-- Brand Isologotipo -->
+      <a href="#" class="flex items-center gap-2.5 group">
+        <div class="w-9 h-9 rounded-lg bg-nexo-card border border-nexo-violet/50 flex items-center justify-center relative overflow-hidden group-hover:border-nexo-cyan transition-colors">
+          <div class="absolute inset-0 bg-gradient-to-tr from-nexo-violet/20 to-nexo-cyan/20"></div>
+          <!-- Geometric Tech Icon -->
+          <svg class="w-5 h-5 text-white relative z-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M4 20V4L12 14L20 4V20" stroke-linecap="square"/>
+            <circle cx="20" cy="4" r="1.5" fill="#22d3ee" stroke="none"/>
+            <circle cx="4" cy="20" r="1.5" fill="#a855f7" stroke="none"/>
+          </svg>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-heading font-black text-xl tracking-[0.2em] leading-none text-white group-hover:text-nexo-cyanBright transition-colors">NEXO</span>
+          <span class="text-[9px] font-mono tracking-widest text-zinc-400 uppercase">SYS.STREETWEAR // 01</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-300">
+        <a href="#catalogo" class="hover:text-nexo-cyanBright transition-colors">Catálogo Drop 01</a>
+        <a href="#personalizados" class="hover:text-nexo-violet transition-colors">Personalizados</a>
+        <a href="#calidad" class="hover:text-white transition-colors">Calidad & Packaging</a>
+        <a href="#como-pedir" class="hover:text-white transition-colors">Entregas</a>
+      </nav>
+
+      <!-- Actions -->
+      <div class="flex items-center gap-3">
+        <button onclick="toggleCart(true)" class="relative flex items-center gap-2 bg-nexo-card hover:bg-zinc-800 border border-nexo-border hover:border-nexo-violet px-3.5 py-2 rounded-xl text-sm font-semibold transition-all cursor-pointer">
+          <i data-lucide="shopping-bag" class="w-4 h-4 text-nexo-cyanBright"></i>
+          <span class="hidden sm:inline">Mi Pedido</span>
+          <span id="cart-badge" class="bg-nexo-violet text-white text-xs font-bold px-1.5 py-0.5 rounded-md min-w-[20px] text-center">0</span>
+        </button>
+
+        <!-- Mobile Menu Toggle -->
+        <button onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-xl bg-nexo-card border border-nexo-border text-zinc-300 hover:text-white">
+          <i data-lucide="menu" class="w-5 h-5"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu Drawer -->
+    <div id="mobile-menu" class="hidden md:hidden bg-nexo-card border-b border-nexo-border px-4 py-4 space-y-3">
+      <a href="#catalogo" onclick="toggleMobileMenu()" class="block py-2 text-sm font-medium text-zinc-200 hover:text-nexo-cyanBright">Catálogo Drop 01</a>
+      <a href="#personalizados" onclick="toggleMobileMenu()" class="block py-2 text-sm font-medium text-zinc-200 hover:text-nexo-violet">Estampados Personalizados</a>
+      <a href="#calidad" onclick="toggleMobileMenu()" class="block py-2 text-sm font-medium text-zinc-200 hover:text-white">Calidad & Packaging</a>
+      <a href="#como-pedir" onclick="toggleMobileMenu()" class="block py-2 text-sm font-medium text-zinc-200 hover:text-white">Puntos de Entrega</a>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="relative overflow-hidden bg-cyber-grid bg-[size:36px_36px] border-b border-nexo-border">
+    <!-- Ambient Neon Blurs -->
+    <div class="absolute -top-24 -left-24 w-96 h-96 bg-nexo-violet/20 rounded-full blur-[120px] pointer-events-none"></div>
+    <div class="absolute top-1/2 -right-24 w-96 h-96 bg-nexo-cyan/15 rounded-full blur-[120px] pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-24 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        
+        <!-- Left Copy -->
+        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-nexo-card border border-nexo-violet/40 text-xs font-mono text-nexo-cyanBright">
+            <span class="w-2 h-2 rounded-full bg-nexo-cyanBright animate-ping"></span>
+            COLECCIÓN CÁPSULA // TIRADA LIMITADA
+          </div>
+
+          <h1 class="font-display text-6xl sm:text-7xl md:text-8xl tracking-tight leading-[0.95] uppercase">
+            ESTILO URBANO.<br />
+            <span class="text-gradient-cyber">PRECIO REAL.</span>
+          </h1>
+
+          <p class="text-zinc-300 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+            Remeras oversize <strong class="text-white">100% algodón peinado 24/1</strong> y hoodies urbanos con gráficas propias de cultura <span class="text-nexo-cyanBright font-medium">tech, cyberpunk & geek</span>. Sin intermediarios ni sobreprecios de shopping.
+          </p>
+
+          <!-- Key Highlights Pills -->
+          <div class="flex flex-wrap justify-center lg:justify-start gap-3 pt-1">
+            <div class="flex items-center gap-2 bg-nexo-card/90 border border-nexo-border px-3.5 py-2 rounded-xl text-xs sm:text-sm">
+              <span class="text-nexo-violet font-bold">$16.000 ARS</span>
+              <span class="text-zinc-400">Remeras Oversize</span>
+            </div>
+            <div class="flex items-center gap-2 bg-nexo-card/90 border border-nexo-border px-3.5 py-2 rounded-xl text-xs sm:text-sm">
+              <i data-lucide="sparkles" class="w-4 h-4 text-nexo-cyanBright"></i>
+              <span class="text-zinc-200">Stickers de regalo en cada compra</span>
+            </div>
+          </div>
+
+          <!-- CTA Buttons -->
+          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+            <a href="#catalogo" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-nexo-violet hover:bg-nexo-violetDark text-white font-heading font-bold text-sm tracking-wider uppercase transition-all neon-glow-violet flex items-center justify-center gap-2">
+              Explorar Drop 01
+              <i data-lucide="arrow-down-right" class="w-4 h-4"></i>
+            </a>
+            <a href="#personalizados" class="w-full sm:w-auto px-7 py-4 rounded-xl bg-nexo-card hover:bg-zinc-800 border border-nexo-border hover:border-nexo-cyan text-white font-heading font-bold text-sm tracking-wider uppercase transition-all flex items-center justify-center gap-2">
+              <i data-lucide="cpu" class="w-4 h-4 text-nexo-cyanBright"></i>
+              Pedir Diseño Custom
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Visual Showcase Card -->
+        <div class="lg:col-span-5">
+          <div class="relative bg-nexo-card border border-nexo-border rounded-3xl p-6 sm:p-8 overflow-hidden shadow-2xl">
+            <div class="flex items-center justify-between text-xs font-mono text-zinc-400 mb-4">
+              <span>MODELO: NEXO_CYBER_01</span>
+              <span class="text-nexo-cyanBright">DTF HIGH-RES</span>
+            </div>
+
+            <!-- Interactive Hero T-Shirt Graphic Preview -->
+            <div class="relative aspect-square rounded-2xl bg-gradient-to-b from-zinc-900 to-black border border-white/5 flex items-center justify-center p-6 overflow-hidden group">
+              <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(168,85,247,0.18),transparent_70%)]"></div>
+              
+              <!-- Stylized Oversize Tee SVG Illustration -->
+              <svg viewBox="0 0 320 320" class="w-full h-full drop-shadow-[0_15px_25px_rgba(0,0,0,0.9)] transition-transform duration-500 group-hover:scale-105">
+                <!-- Oversize Tee Silhouette -->
+                <path d="M95 42 L130 32 Q160 48 190 32 L225 42 L292 88 L264 138 L228 116 L228 282 L92 282 L92 116 L56 138 L28 88 Z" fill="#141417" stroke="#2e2e34" stroke-width="2.5"/>
+                <!-- Reinforced Collar -->
+                <path d="M126 34 Q160 54 194 34" fill="none" stroke="#3f3f46" stroke-width="5" stroke-linecap="round"/>
+                <!-- Back Streetwear Cyberpunk Graphic -->
+                <rect x="115" y="85" width="90" height="125" rx="6" fill="#09090b" stroke="#a855f7" stroke-width="1.5"/>
+                <circle cx="160" cy="135" r="28" fill="none" stroke="#22d3ee" stroke-width="2" stroke-dasharray="6 3"/>
+                <polygon points="160,115 178,148 142,148" fill="none" stroke="#a855f7" stroke-width="2"/>
+                <text x="160" y="182" text-anchor="middle" fill="#ffffff" font-family="Montserrat, sans-serif" font-weight="900" font-size="14" letter-spacing="3">NEXO</text>
+                <text x="160" y="196" text-anchor="middle" fill="#22d3ee" font-family="monospace" font-size="7" letter-spacing="1.5">NO_LIMITS // 24.1</text>
+              </svg>
+
+              <!-- Floating Spec Tag -->
+              <div class="absolute bottom-3 left-3 right-3 bg-black/80 backdrop-blur-md border border-white/10 rounded-xl p-3 flex items-center justify-between">
+                <div>
+                  <p class="text-xs font-bold text-white">Corte Oversize Real</p>
+                  <p class="text-[11px] text-zinc-400">Algodón 24/1 + Cuello Reeb</p>
+                </div>
+                <span class="font-display text-2xl text-nexo-cyanBright tracking-wide">$16.000</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- STUDENT PROMO BANNER -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12">
+    <div class="rounded-2xl bg-gradient-to-r from-nexo-violet/20 via-nexo-card to-nexo-cyan/20 border border-nexo-violet/40 p-5 sm:p-6 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-4 text-center md:text-left">
+        <div class="w-12 h-12 rounded-xl bg-nexo-violet/20 border border-nexo-violet flex items-center justify-center shrink-0 mx-auto md:mx-0">
+          <i data-lucide="percent" class="w-6 h-6 text-nexo-cyanBright"></i>
+        </div>
+        <div>
+          <span class="text-xs font-mono uppercase tracking-wider text-nexo-cyanBright font-semibold">Beneficio Estudiantes</span>
+          <h2 class="font-heading font-bold text-lg sm:text-xl text-white">Promo Combo: Llevando 2 o más prendas tenés 10% OFF + Pack de Stickers Exclusivos</h2>
+        </div>
+      </div>
+      <span class="px-4 py-2 rounded-xl bg-black/60 border border-white/10 text-xs font-mono text-zinc-300 shrink-0">
+        DESCUENTO AUTOMÁTICO EN CARRITO
+      </span>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE CAPSULE CATALOG (DROP 01) -->
+  <section id="catalogo" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+      <div>
+        <span class="text-xs font-mono text-nexo-violet uppercase tracking-widest">// CATÁLOGO INTERACTIVO</span>
+        <h2 class="font-display text-5xl sm:text-6xl uppercase tracking-tight mt-1">CAPSULE DROP 01</h2>
+        <p class="text-zinc-400 text-sm sm:text-base mt-1">Alterná entre vista <strong class="text-white">Frente</strong> (logo minimalista) y <strong class="text-white">Espalda</strong> (ilustración streetwear).</p>
+      </div>
+
+      <!-- Filter Tabs -->
+      <div class="flex flex-wrap gap-2" id="filter-tabs">
+        <button onclick="filterProducts('all')" data-filter="all" class="filter-btn active px-4 py-2.5 rounded-xl text-xs sm:text-sm font-heading font-bold uppercase tracking-wider bg-nexo-violet text-white transition-all cursor-pointer">
+          Todos
+        </button>
+        <button onclick="filterProducts('remera')" data-filter="remera" class="filter-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-heading font-bold uppercase tracking-wider bg-nexo-card text-zinc-400 hover:text-white border border-nexo-border transition-all cursor-pointer">
+          Remeras Oversize
+        </button>
+        <button onclick="filterProducts('hoodie')" data-filter="hoodie" class="filter-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-heading font-bold uppercase tracking-wider bg-nexo-card text-zinc-400 hover:text-white border border-nexo-border transition-all cursor-pointer">
+          Hoodies Urbanos
+        </button>
+      </div>
+    </div>
+
+    <!-- Product Grid -->
+    <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+      <!-- Rendered dynamically via JS -->
+    </div>
+  </section>
+
+  <!-- CUSTOM PRINT BUILDER ("ARMÁ TU ESTAMPADO PERSONALIZADO") -->
+  <section id="personalizados" class="border-y border-nexo-border bg-nexo-card/40 py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        
+        <!-- Left Info -->
+        <div class="lg:col-span-5 space-y-5">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-nexo-cyan/10 border border-nexo-cyan/30 text-nexo-cyanBright text-xs font-mono">
+            <i data-lucide="layers" class="w-3.5 h-3.5"></i>
+            CUSTOM LAB // BAJO PEDIDO
+          </div>
+          <h2 class="font-display text-5xl sm:text-6xl uppercase leading-none">
+            ARMÁ TU ESTAMPADO <span class="text-nexo-violet">PERSONALIZADO</span>
+          </h2>
+          <p class="text-zinc-300 text-sm sm:text-base leading-relaxed">
+            ¿Tenés una idea propia, el logo de tu team, una frase urbana o una gráfica anime/tech? Elegí el color base, el talle y contanos tu concepto. Lo estampamos con tecnología <strong class="text-white">DTF de máxima definición</strong>.
+          </p>
+          <ul class="space-y-2.5 text-sm text-zinc-300">
+            <li class="flex items-center gap-2.5">
+              <i data-lucide="check-circle-2" class="w-4 h-4 text-nexo-cyanBright shrink-0"></i>
+              <span>Remera Oversize 100% Algodón Peinado 24/1</span>
+            </li>
+            <li class="flex items-center gap-2.5">
+              <i data-lucide="check-circle-2" class="w-4 h-4 text-nexo-cyanBright shrink-0"></i>
+              <span>Incluye logo Nexo en manga/cuello + tu diseño en espalda o frente</span>
+            </li>
+            <li class="flex items-center gap-2.5">
+              <i data-lucide="check-circle-2" class="w-4 h-4 text-nexo-cyanBright shrink-0"></i>
+              <span>Precio final cerrado: <strong class="text-white">$17.500 ARS</strong> (con packaging + stickers)</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Right Interactive Form -->
+        <div class="lg:col-span-7">
+          <form id="custom-order-form" onsubmit="addCustomProduct(event)" class="bg-nexo-card border border-nexo-border rounded-3xl p-6 sm:p-8 space-y-5 shadow-xl">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <!-- Base Garment Color -->
+              <div>
+                <label class="block text-xs font-mono uppercase text-zinc-400 mb-2">1. Color de Prenda Base</label>
+                <div class="grid grid-cols-2 gap-2.5">
+                  <label class="cursor-pointer">
+                    <input type="radio" name="customColor" value="Negro" checked class="peer sr-only">
+                    <div class="p-3 rounded-xl bg-nexo-black border border-nexo-border peer-checked:border-nexo-violet peer-checked:bg-nexo-violet/10 flex items-center gap-2.5 transition-all">
+                      <span class="w-4 h-4 rounded-full bg-zinc-950 border border-zinc-600"></span>
+                      <span class="text-sm font-medium">Negro</span>
+                    </div>
+                  </label>
+                  <label class="cursor-pointer">
+                    <input type="radio" name="customColor" value="Blanco" class="peer sr-only">
+                    <div class="p-3 rounded-xl bg-nexo-black border border-nexo-border peer-checked:border-nexo-cyan peer-checked:bg-nexo-cyan/10 flex items-center gap-2.5 transition-all">
+                      <span class="w-4 h-4 rounded-full bg-white border border-zinc-400"></span>
+                      <span class="text-sm font-medium">Blanco</span>
+                    </div>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Size -->
+              <div>
+                <label class="block text-xs font-mono uppercase text-zinc-400 mb-2">2. Talle Oversize</label>
+                <div class="grid grid-cols-4 gap-2">
+                  <label class="cursor-pointer">
+                    <input type="radio" name="customSize" value="S" class="peer sr-only">
+                    <div class="py-2.5 text-center rounded-xl bg-nexo-black border border-nexo-border peer-checked:border-nexo-cyan peer-checked:text-nexo-cyanBright font-bold text-sm transition-all">S</div>
+                  </label>
+                  <label class="cursor-pointer">
+                    <input type="radio" name="customSize" value="M" checked class="peer sr-only">
+                    <div class="py-2.5 text-center rounded-xl bg-nexo-black border border-nexo-border peer-checked:border-nexo-cyan peer-checked:text-nexo-cyanBright font-bold text-sm transition-all">M</div>
+                  </label>
+                  <label class="cursor-pointer">
+                    <input type="radio" name="customSize" value="L" class="peer sr-only">
+                    <div class="py-2.5 text-center rounded-xl bg-nexo-black border border-nexo-border peer-checked:border-nexo-cyan peer-checked:text-nexo-cyanBright font-bold text-sm transition-all">L</div>
+                  </label>
+                  <label class="cursor-pointer">
+                    <input type="radio" name="customSize" value="XL" class="peer sr-only">
+                    <div class="py-2.5 text-center rounded-xl bg-nexo-black border border-nexo-border peer-checked:border-nexo-cyan peer-checked:text-nexo-cyanBright font-bold text-sm transition-all">XL</div>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Aesthetic Vibe -->
+            <div>
+              <label class="block text-xs font-mono uppercase text-zinc-400 mb-2">3. Estética / Estilo del Diseño</label>
+              <div class="grid grid-cols-3 gap-2.5">
+                <label class="cursor-pointer">
+                  <input type="radio" name="customVibe" value="Tech / Cyberpunk" checked class="peer sr-only">
+                  <div class="p-3 rounded-xl bg-nexo-black border border-nexo-border peer-checked:border-nexo-violet text-center text-xs sm:text-sm font-medium transition-all">
+                    ⚡ Cyberpunk
+                  </div>
+                </label>
+                <label class="cursor-pointer">
+                  <input type="radio" name="customVibe" value="Cultura Geek / Gaming" class="peer sr-only">
+                  <div class="p-3 rounded-xl bg-nexo-black border border-nexo-border peer-checked:border-nexo-cyan text-center text-xs sm:text-sm font-medium transition-all">
+                    🎮 Geek / Dev
+                  </div>
+                </label>
+                <label class="cursor-pointer">
+                  <input type="radio" name="customVibe" value="Frase Urbana / Tipografía" class="peer sr-only">
+                  <div class="p-3 rounded-xl bg-nexo-black border border-nexo-border peer-checked:border-white text-center text-xs sm:text-sm font-medium transition-all">
+                    🔥 Frase Urbana
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <!-- Idea Description -->
+            <div>
+              <label for="customIdea" class="block text-xs font-mono uppercase text-zinc-400 mb-2">4. Describí tu idea o frase (luego coordinamos la imagen por WhatsApp)</label>
+              <textarea id="customIdea" rows="2" required placeholder="Ej: Quiero una gráfica estilo retro terminal con la frase '404 SLEEP NOT FOUND' en violeta y cian..." class="w-full rounded-xl bg-nexo-black border border-nexo-border focus:border-nexo-violet focus:outline-none p-3.5 text-sm text-white placeholder-zinc-500"></textarea>
+            </div>
+
+            <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-nexo-violet to-nexo-cyan hover:opacity-95 text-white font-heading font-bold text-sm uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer">
+              <i data-lucide="plus-circle" class="w-5 h-5"></i>
+              Agregar Remera Custom al Pedido ($17.500 ARS)
+            </button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- QUALITY & PACKAGING EXPERIENCE -->
+  <section id="calidad" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="text-center max-w-2xl mx-auto mb-12">
+      <span class="text-xs font-mono text-nexo-cyanBright uppercase tracking-widest">// CALIDAD TEXTIL & UNBOXING</span>
+      <h2 class="font-display text-5xl sm:text-6xl uppercase mt-1">DETALLES QUE HACEN LA DIFERENCIA</h2>
+      <p class="text-zinc-400 text-sm sm:text-base mt-2">Cuidamos cada etapa del proceso: desde la selección del algodón hasta el empaquetado listo para regalar o estrenar.</p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      <!-- Visual Ziplock & Hangtag Mockup -->
+      <div class="lg:col-span-5">
+        <div class="ziplock-bag rounded-3xl p-6 sm:p-8 relative overflow-hidden">
+          <!-- Ziplock Seal Line -->
+          <div class="w-full h-3 border-y border-white/25 bg-white/5 rounded-sm mb-6 flex items-center justify-center">
+            <span class="text-[8px] font-mono tracking-[0.3em] text-white/50 uppercase">REUSABLE ZIPLOCK // NEXO PACK</span>
+          </div>
+
+          <!-- Content inside frosted bag -->
+          <div class="bg-zinc-950/90 border border-white/10 rounded-2xl p-5 space-y-4 relative">
+            <div class="flex items-center justify-between">
+              <span class="font-heading font-black text-lg tracking-widest text-white">NEXO</span>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-nexo-violet/20 text-nexo-violet border border-nexo-violet/40">100% ALGODÓN 24/1</span>
+            </div>
+            <p class="text-xs text-zinc-400">Prenda doblada, planchada y protegida contra humedad y roces.</p>
+            
+            <!-- Hangtag & Stickers Preview -->
+            <div class="pt-3 border-t border-white/10 flex items-center justify-between gap-3">
+              <div class="flex items-center gap-2 bg-amber-900/20 border border-amber-700/40 px-3 py-2 rounded-xl">
+                <i data-lucide="tag" class="w-4 h-4 text-amber-400"></i>
+                <div class="text-[11px]">
+                  <p class="font-bold text-amber-200">Hangtag Kraft</p>
+                  <p class="text-amber-400/80">Con hilo de yute</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-2 bg-nexo-cyan/10 border border-nexo-cyan/30 px-3 py-2 rounded-xl">
+                <i data-lucide="sticker" class="w-4 h-4 text-nexo-cyanBright"></i>
+                <div class="text-[11px]">
+                  <p class="font-bold text-nexo-cyanBright">+ Stickers Pack</p>
+                  <p class="text-zinc-400">De regalo</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 Specs Cards -->
+      <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <div class="bg-nexo-card border border-nexo-border p-6 rounded-2xl hover:border-nexo-violet/50 transition-colors">
+          <div class="w-10 h-10 rounded-xl bg-nexo-violet/15 flex items-center justify-center text-nexo-violet mb-4">
+            <i data-lucide="shirt" class="w-5 h-5"></i>
+          </div>
+          <h3 class="font-heading font-bold text-base text-white mb-1.5">Algodón Peinado 24/1</h3>
+          <p class="text-xs sm:text-sm text-zinc-400 leading-relaxed">Tela suave, fresca y resistente con cuello reforzado que no se deforma con los lavados ni el uso diario.</p>
+        </div>
+
+        <div class="bg-nexo-card border border-nexo-border p-6 rounded-2xl hover:border-nexo-cyan/50 transition-colors">
+          <div class="w-10 h-10 rounded-xl bg-nexo-cyan/15 flex items-center justify-center text-nexo-cyanBright mb-4">
+            <i data-lucide="printer" class="w-5 h-5"></i>
+          </div>
+          <h3 class="font-heading font-bold text-base text-white mb-1.5">Estampado DTF Premium</h3>
+          <p class="text-xs sm:text-sm text-zinc-400 leading-relaxed">Colores neón vibrantes, detalles nítidos y máxima elasticidad sin cuartearse ni perder intensidad.</p>
+        </div>
+
+        <div class="bg-nexo-card border border-nexo-border p-6 rounded-2xl hover:border-nexo-cyan/50 transition-colors">
+          <div class="w-10 h-10 rounded-xl bg-nexo-cyan/15 flex items-center justify-center text-nexo-cyanBright mb-4">
+            <i data-lucide="package-check" class="w-5 h-5"></i>
+          </div>
+          <h3 class="font-heading font-bold text-base text-white mb-1.5">Bolsa Ziplock Esmerilada</h3>
+          <p class="text-xs sm:text-sm text-zinc-400 leading-relaxed">Packaging reutilizable con logo impreso de Nexo y etiqueta hangtag de cartón con hilo de yute.</p>
+        </div>
+
+        <div class="bg-nexo-card border border-nexo-border p-6 rounded-2xl hover:border-nexo-violet/50 transition-colors">
+          <div class="w-10 h-10 rounded-xl bg-nexo-violet/15 flex items-center justify-center text-nexo-violet mb-4">
+            <i data-lucide="gift" class="w-5 h-5"></i>
+          </div>
+          <h3 class="font-heading font-bold text-base text-white mb-1.5">Merchandising de Regalo</h3>
+          <p class="text-xs sm:text-sm text-zinc-400 leading-relaxed">Cada prenda incluye stickers exclusivos de la marca para pegar en tu notebook, termo, celu o skate.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW TO ORDER & DELIVERY -->
+  <section id="como-pedir" class="border-t border-nexo-border bg-nexo-card/30 py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="text-xs font-mono text-nexo-violet uppercase tracking-widest">// SIN VUELTAS NI ENVÍOS CAROS</span>
+        <h2 class="font-display text-5xl uppercase mt-1">¿CÓMO COMPRAR Y RECIBIR?</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-nexo-card border border-nexo-border rounded-2xl p-6 relative">
+          <span class="font-display text-5xl text-white/10 absolute top-4 right-5">01</span>
+          <h3 class="font-heading font-bold text-lg text-white mb-2">Armá tu pedido acá</h3>
+          <p class="text-sm text-zinc-400">Elegí tus modelos, talles y colores en el catálogo o armá tu diseño personalizado.</p>
+        </div>
+        <div class="bg-nexo-card border border-nexo-border rounded-2xl p-6 relative">
+          <span class="font-display text-5xl text-white/10 absolute top-4 right-5">02</span>
+          <h3 class="font-heading font-bold text-lg text-white mb-2">Confirmá por WhatsApp o IG</h3>
+          <p class="text-sm text-zinc-400">El sistema te genera el resumen listo con descuentos aplicados para enviarlo directo por DM o WhatsApp.</p>
+        </div>
+        <div class="bg-nexo-card border border-nexo-border rounded-2xl p-6 relative">
+          <span class="font-display text-5xl text-white/10 absolute top-4 right-5">03</span>
+          <h3 class="font-heading font-bold text-lg text-white mb-2">Entrega en mano</h3>
+          <p class="text-sm text-zinc-400">Coordinamos entrega sin cargo en el colegio o puntos de encuentro céntricos en Rosario.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-nexo-border bg-nexo-black py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="text-center md:text-left">
+        <div class="flex items-center justify-center md:justify-start gap-2">
+          <span class="font-heading font-black text-xl tracking-[0.2em] text-white">NEXO</span>
+          <span class="text-xs font-mono text-nexo-cyanBright">// STREETWEAR</span>
+        </div>
+        <p class="text-xs text-zinc-500 mt-1">Indumentaria urbana, cultura geek & tech. Rosario, Santa Fe.</p>
+        <p class="text-[11px] text-zinc-500 mt-1">Emprendimiento formalizado • Emitimos Factura C electrónica (Monotributo).</p>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-nexo-card border border-nexo-border hover:border-nexo-violet text-xs font-semibold text-zinc-200 transition-colors">
+          <i data-lucide="instagram" class="w-4 h-4 text-nexo-violet"></i>
+          @nexo.streetwear
+        </a>
+        <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-nexo-card border border-nexo-border hover:border-nexo-cyan text-xs font-semibold text-zinc-200 transition-colors">
+          <i data-lucide="video" class="w-4 h-4 text-nexo-cyanBright"></i>
+          TikTok Lookbook
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SLIDE-OVER CART / ORDER DRAWER -->
+  <div id="cart-overlay" onclick="toggleCart(false)" class="fixed inset-0 bg-black/75 backdrop-blur-sm z-50 hidden transition-opacity"></div>
+  
+  <aside id="cart-drawer" class="fixed top-0 right-0 h-full w-full max-w-md bg-nexo-card border-l border-nexo-border z-50 transform translate-x-full transition-transform duration-300 flex flex-col">
+    <!-- Drawer Header -->
+    <div class="p-5 border-b border-nexo-border flex items-center justify-between">
+      <div class="flex items-center gap-2.5">
+        <i data-lucide="shopping-bag" class="w-5 h-5 text-nexo-cyanBright"></i>
+        <h3 class="font-heading font-bold text-lg uppercase tracking-wide">Tu Pedido NEXO</h3>
+      </div>
+      <button onclick="toggleCart(false)" class="p-2 rounded-xl bg-nexo-black border border-nexo-border text-zinc-400 hover:text-white cursor-pointer">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+    </div>
+
+    <!-- Drawer Body (Items + Delivery Options) -->
+    <div class="flex-1 overflow-y-auto p-5 space-y-5">
+      <!-- Items Container -->
+      <div id="cart-items-container" class="space-y-3">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <!-- Free Gift Box -->
+      <div id="gift-banner" class="hidden p-3.5 rounded-xl bg-nexo-violet/10 border border-nexo-violet/30 flex items-center gap-3">
+        <i data-lucide="gift" class="w-5 h-5 text-nexo-cyanBright shrink-0"></i>
+        <div class="text-xs">
+          <p class="font-bold text-white">¡Pack de Stickers NEXO incluido gratis!</p>
+          <p id="promo-status-text" class="text-zinc-400">Agregá 1 prenda más para activar el 10% OFF.</p>
+        </div>
+      </div>
+
+      <!-- Delivery Method Selector -->
+      <div id="delivery-section" class="hidden space-y-3 pt-2 border-t border-nexo-border">
+        <label class="block text-xs font-mono uppercase text-zinc-400">Método de Entrega (Sin cargo)</label>
+        <div class="space-y-2">
+          <label class="flex items-center gap-3 p-3 rounded-xl bg-nexo-black border border-nexo-border cursor-pointer hover:border-nexo-cyan">
+            <input type="radio" name="deliveryMethod" value="Entrega en mano en el colegio" checked onchange="updateOrderPreview()" class="accent-nexo-violet">
+            <span class="text-xs sm:text-sm text-zinc-200">Entrega en mano en el colegio</span>
+          </label>
+          <label class="flex items-center gap-3 p-3 rounded-xl bg-nexo-black border border-nexo-border cursor-pointer hover:border-nexo-cyan">
+            <input type="radio" name="deliveryMethod" value="Punto de encuentro en la zona (Rosario)" onchange="updateOrderPreview()" class="accent-nexo-violet">
+            <span class="text-xs sm:text-sm text-zinc-200">Punto de encuentro en la zona (Rosario)</span>
+          </label>
+        </div>
+
+        <!-- Optional Customer Name -->
+        <div>
+          <label for="customer-name" class="block text-xs font-mono uppercase text-zinc-400 mb-1.5">Tu Nombre / Curso o IG (Opcional)</label>
+          <input type="text" id="customer-name" oninput="updateOrderPreview()" placeholder="Ej: Lucas - 6to / @lucas.ok" class="w-full rounded-xl bg-nexo-black border border-nexo-border focus:border-nexo-cyan focus:outline-none px-3.5 py-2.5 text-sm text-white">
+        </div>
+      </div>
+    </div>
+
+    <!-- Drawer Footer (Totals & Checkout Actions) -->
+    <div id="cart-footer" class="hidden p-5 border-t border-nexo-border bg-nexo-black space-y-4">
+      <div class="space-y-1.5 text-sm">
+        <div class="flex justify-between text-zinc-400">
+          <span>Subtotal</span>
+          <span id="cart-subtotal">$0</span>
+        </div>
+        <div id="discount-row" class="hidden flex justify-between text-nexo-cyanBright font-medium">
+          <span>Promo Estudiantes (10% OFF 2+ prendas)</span>
+          <span id="cart-discount">-$0</span>
+        </div>
+        <div class="flex justify-between text-base font-bold text-white pt-1.5 border-t border-white/10">
+          <span>Total Estimado</span>
+          <span id="cart-total" class="font-display text-2xl tracking-wide text-nexo-cyanBright">$0</span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 gap-2.5">
+        <button onclick="sendOrderWhatsApp()" class="w-full py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-heading font-bold text-xs sm:text-sm uppercase tracking-wider flex items-center justify-center gap-2 transition-colors cursor-pointer">
+          <i data-lucide="message-circle" class="w-4 h-4"></i>
+          Enviar Pedido por WhatsApp
+        </button>
+        <button onclick="copyOrderToClipboard()" class="w-full py-3 rounded-xl bg-nexo-card hover:bg-zinc-800 border border-nexo-border text-zinc-200 font-heading font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-colors cursor-pointer">
+          <i data-lucide="copy" class="w-4 h-4 text-nexo-violet"></i>
+          Copiar Resumen para Instagram DM
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Hidden textarea for reliable clipboard copying -->
+  <textarea id="clipboard-helper" class="sr-only" aria-hidden="true"></textarea>
+
+  <script>
+    // ==========================================
+    // 1. PRODUCT CATALOG DATA (DROP 01)
+    // ==========================================
+    const products = [
+      {
+        id: 'cyber-glitch-01',
+        name: 'Cyber Glitch 01',
+        category: 'remera',
+        categoryLabel: 'Remera Oversize 24/1',
+        price: 16000,
+        badge: 'BEST SELLER',
+        description: 'Frente minimalista con isologotipo Nexo en pecho. Espalda con gráfica cyberpunk neón de alto contraste.',
+        colors: [
+          { name: 'Negro', hex: '#141417' },
+          { name: 'Blanco', hex: '#f4f4f5' }
+        ],
+        sizes: ['S', 'M', 'L', 'XL'],
+        artType: 'cyber'
+      },
+      {
+        id: 'retro-dev-404',
+        name: 'Error 404: Sleep Not Found',
+        category: 'remera',
+        categoryLabel: 'Remera Oversize 24/1',
+        price: 16000,
+        badge: 'GEEK EDITION',
+        description: 'Inspirada en cultura dev y terminal retro. Estampado DTF ultra nítido en espalda + detalle tech frontal.',
+        colors: [
+          { name: 'Negro', hex: '#141417' },
+          { name: 'Violeta', hex: '#3b0764' }
+        ],
+        sizes: ['S', 'M', 'L', 'XL'],
+        artType: 'dev'
+      },
+      {
+        id: 'nexo-core-tech',
+        name: 'Nexo Core Protocol',
+        category: 'remera',
+        categoryLabel: 'Remera Oversize 24/1',
+        price: 16000,
+        badge: 'DROP 01',
+        description: 'Estética geométrica brutalista con coordenadas urbanas y tipografía Bebas/Montserrat.',
+        colors: [
+          { name: 'Blanco', hex: '#f4f4f5' },
+          { name: 'Negro', hex: '#141417' }
+        ],
+        sizes: ['S', 'M', 'L', 'XL'],
+        artType: 'core'
+      },
+      {
+        id: 'zero-latency',
+        name: 'Zero Latency // Gaming',
+        category: 'remera',
+        categoryLabel: 'Remera Oversize 24/1',
+        price: 16000,
+        badge: 'LIMITED',
+        description: 'Para setups nocturnos y calle. Gráfica trasera con visor HUD cian/violeta.',
+        colors: [
+          { name: 'Negro', hex: '#141417' },
+          { name: 'Blanco', hex: '#f4f4f5' }
+        ],
+        sizes: ['S', 'M', 'L', 'XL'],
+        artType: 'hud'
+      },
+      {
+        id: 'hoodie-overdrive',
+        name: 'Hoodie Nexo Overdrive',
+        category: 'hoodie',
+        categoryLabel: 'Hoodie Urbano Frisa Pesada',
+        price: 28000,
+        badge: 'INVIERNO / NIGHT',
+        description: 'Buzo canguro corte boxy oversize con capucha forrada y estampado DTF en pecho y espalda.',
+        colors: [
+          { name: 'Negro', hex: '#141417' },
+          { name: 'Violeta', hex: '#3b0764' }
+        ],
+        sizes: ['M', 'L', 'XL'],
+        artType: 'hoodie'
+      },
+      {
+        id: 'hoodie-cyber-grid',
+        name: 'Hoodie Sys.Override',
+        category: 'hoodie',
+        categoryLabel: 'Hoodie Urbano Frisa Pesada',
+        price: 28000,
+        badge: 'TIRADA CORTA',
+        description: 'Comodidad extrema para cursar o salir. Puños de morley reforzados y gráfica trasera.',
+        colors: [
+          { name: 'Negro', hex: '#141417' },
+          { name: 'Blanco', hex: '#f4f4f5' }
+        ],
+        sizes: ['M', 'L', 'XL'],
+        artType: 'hoodie2'
+      }
+    ];
+
+    // State per product card (selected color, size, and front/back view)
+    const cardState = {};
+    products.forEach(p => {
+      cardState[p.id] = {
+        color: p.colors[0].name,
+        colorHex: p.colors[0].hex,
+        size: 'L',
+        view: 'back' // Default to back so users see the big streetwear graphic immediately
+      };
+    });
+
+    // Cart State
+    let cart = [];
+
+    // ==========================================
+    // 2. SVG GARMENT & PRINT GENERATOR
+    // ==========================================
+    function generateGarmentSVG(product, state) {
+      const isLight = state.color === 'Blanco';
+      const baseFill = state.colorHex;
+      const strokeColor = isLight ? '#d4d4d8' : '#2e2e36';
+      const inkMain = isLight ? '#09090b' : '#ffffff';
+      const isHoodie = product.category === 'hoodie';
+
+      // Garment Silhouette Path (Tee vs Hoodie)
+      const garmentSilhouette = isHoodie
+        ? `<path d="M105 48 Q160 22 215 48 L285 95 L262 145 L224 122 L224 278 L96 278 L96 122 L58 145 L35 95 Z" fill="${baseFill}" stroke="${strokeColor}" stroke-width="2.5"/>
+           <path d="M118 45 Q160 72 202 45" fill="none" stroke="${strokeColor}" stroke-width="3"/>
+           <path d="M122 205 L198 205 L208 265 L112 265 Z" fill="none" stroke="${strokeColor}" stroke-width="1.5" opacity="0.6"/>`
+        : `<path d="M95 42 L130 32 Q160 48 190 32 L225 42 L292 88 L264 138 L228 116 L228 282 L92 282 L92 116 L56 138 L28 88 Z" fill="${baseFill}" stroke="${strokeColor}" stroke-width="2.5"/>
+           <path d="M126 34 Q160 54 194 34" fill="none" stroke="${strokeColor}" stroke-width="4.5" stroke-linecap="round"/>`;
+
+      // FRONT VIEW: Minimalist Chest Logo
+      if (state.view === 'front') {
+        return `
+          <svg viewBox="0 0 320 320" class="w-full h-full drop-shadow-xl transition-all duration-300">
+            ${garmentSilhouette}
+            <!-- Minimalist Chest Logo (Left Chest) -->
+            <g transform="translate(178, 92)">
+              <rect x="0" y="0" width="34" height="14" rx="2" fill="none" stroke="#a855f7" stroke-width="1.2"/>
+              <text x="17" y="10" text-anchor="middle" fill="${inkMain}" font-family="Montserrat, sans-serif" font-weight="900" font-size="7.5" letter-spacing="1.5">NEXO</text>
+              <circle cx="31" cy="3" r="1.5" fill="#22d3ee"/>
+            </g>
+            <text x="160" y="255" text-anchor="middle" fill="${inkMain}" opacity="0.35" font-family="monospace" font-size="8" letter-spacing="2">VISTA FRONTAL // MINIMAL</text>
+          </svg>
+        `;
+      }
+
+      // BACK VIEW: Large Streetwear Illustrations
+      let backGraphic = '';
+      if (product.artType === 'cyber' || product.artType === 'hoodie') {
+        backGraphic = `
+          <rect x="116" y="84" width="88" height="118" rx="4" fill="#09090b" stroke="#a855f7" stroke-width="1.8"/>
+          <circle cx="160" cy="130" r="26" fill="none" stroke="#22d3ee" stroke-width="2" stroke-dasharray="5 3"/>
+          <polygon points="160,110 178,144 142,144" fill="none" stroke="#a855f7" stroke-width="2"/>
+          <text x="160" y="176" text-anchor="middle" fill="#ffffff" font-family="Montserrat, sans-serif" font-weight="900" font-size="14" letter-spacing="3">NEXO</text>
+          <text x="160" y="191" text-anchor="middle" fill="#22d3ee" font-family="monospace" font-size="7">CYBER_DROP // 01</text>
+        `;
+      } else if (product.artType === 'dev') {
+        backGraphic = `
+          <rect x="114" y="86" width="92" height="112" rx="6" fill="#09090b" stroke="#22d3ee" stroke-width="1.8"/>
+          <line x1="114" y1="102" x2="206" y2="102" stroke="#22d3ee" stroke-width="1"/>
+          <circle cx="122" cy="94" r="2" fill="#a855f7"/>
+          <circle cx="129" cy="94" r="2" fill="#22d3ee"/>
+          <text x="160" y="132" text-anchor="middle" fill="#a855f7" font-family="Bebas Neue, sans-serif" font-size="28" letter-spacing="2">ERR 404</text>
+          <text x="160" y="150" text-anchor="middle" fill="#ffffff" font-family="monospace" font-size="8">SLEEP_NOT_FOUND</text>
+          <rect x="130" y="164" width="60" height="16" rx="3" fill="#a855f7"/>
+          <text x="160" y="175" text-anchor="middle" fill="#ffffff" font-family="Montserrat, sans-serif" font-weight="800" font-size="8" letter-spacing="1.5">NEXO.DEV</text>
+        `;
+      } else if (product.artType === 'core' || product.artType === 'hoodie2') {
+        backGraphic = `
+          <text x="160" y="118" text-anchor="middle" fill="${inkMain}" font-family="Bebas Neue, sans-serif" font-size="34" letter-spacing="4">NEXO</text>
+          <rect x="118" y="126" width="84" height="4" fill="#22d3ee"/>
+          <rect x="118" y="134" width="54" height="4" fill="#a855f7"/>
+          <text x="160" y="160" text-anchor="middle" fill="${inkMain}" font-family="monospace" font-size="8" letter-spacing="2">CORE PROTOCOL</text>
+          <text x="160" y="175" text-anchor="middle" fill="#22d3ee" font-family="monospace" font-size="7">32.9442° S, 60.6505° W</text>
+        `;
+      } else {
+        backGraphic = `
+          <polygon points="160,86 204,138 160,192 116,138" fill="#09090b" stroke="#22d3ee" stroke-width="2"/>
+          <circle cx="160" cy="138" r="18" fill="none" stroke="#a855f7" stroke-width="2.5"/>
+          <text x="160" y="141" text-anchor="middle" fill="#ffffff" font-family="Montserrat, sans-serif" font-weight="900" font-size="9" letter-spacing="1">0ms</text>
+          <text x="160" y="206" text-anchor="middle" fill="${inkMain}" font-family="Bebas Neue, sans-serif" font-size="16" letter-spacing="3">ZERO LATENCY</text>
+        `;
+      }
+
+      return `
+        <svg viewBox="0 0 320 320" class="w-full h-full drop-shadow-xl transition-all duration-300">
+          ${garmentSilhouette}
+          ${backGraphic}
+        </svg>
+      `;
+    }
+
+    // ==========================================
+    // 3. RENDER CATALOG CARDS
+    // ==========================================
+    function renderProducts(filter = 'all') {
+      const grid = document.getElementById('product-grid');
+      const filtered = filter === 'all' ? products : products.filter(p => p.category === filter);
+
+      grid.innerHTML = filtered.map(product => {
+        const state = cardState[product.id];
+        return `
+          <article class="bg-nexo-card border border-nexo-border hover:border-nexo-violet/60 rounded-3xl overflow-hidden flex flex-col transition-all duration-300 group">
+            <!-- Top Preview Area -->
+            <div class="relative bg-gradient-to-b from-zinc-900/90 to-nexo-black p-5 border-b border-nexo-border">
+              <!-- Badge -->
+              <span class="absolute top-4 left-4 z-10 px-2.5 py-1 rounded-lg bg-black/80 border border-white/10 text-[10px] font-mono font-semibold tracking-wider text-nexo-cyanBright">
+                ${product.badge}
+              </span>
+
+              <!-- Front / Back Toggle Switch -->
+              <div class="absolute top-4 right-4 z-10 flex bg-black/85 border border-white/15 rounded-xl p-1">
+                <button onclick="setCardView('${product.id}', 'front')" class="px-2.5 py-1 rounded-lg text-[11px] font-mono transition-colors cursor-pointer ${state.view === 'front' ? 'bg-nexo-violet text-white font-bold' : 'text-zinc-400 hover:text-white'}">
+                  Frente
+                </button>
+                <button onclick="setCardView('${product.id}', 'back')" class="px-2.5 py-1 rounded-lg text-[11px] font-mono transition-colors cursor-pointer ${state.view === 'back' ? 'bg-nexo-cyan text-black font-bold' : 'text-zinc-400 hover:text-white'}">
+                  Espalda
+                </button>
+              </div>
+
+              <!-- SVG Garment Mockup -->
+              <div id="svg-container-${product.id}" class="aspect-square max-h-64 mx-auto flex items-center justify-center pt-4">
+                ${generateGarmentSVG(product, state)}
+              </div>
+            </div>
+
+            <!-- Card Details -->
+            <div class="p-6 flex-1 flex flex-col justify-between space-y-5">
+              <div>
+                <div class="flex items-start justify-between gap-2">
+                  <div>
+                    <p class="text-[11px] font-mono text-zinc-400 uppercase">${product.categoryLabel}</p>
+                    <h3 class="font-heading font-extrabold text-xl text-white mt-0.5">${product.name}</h3>
+                  </div>
+                  <span class="font-display text-3xl text-nexo-cyanBright tracking-wide">$${product.price.toLocaleString('es-AR')}</span>
+                </div>
+                <p class="text-xs text-zinc-400 mt-2 leading-relaxed">${product.description}</p>
+              </div>
+
+              <!-- Selectors (Color & Size) -->
+              <div class="space-y-4 pt-2 border-t border-white/5">
+                <!-- Color Swatches -->
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-mono text-zinc-400">Color: <strong id="color-label-${product.id}" class="text-white">${state.color}</strong></span>
+                  <div class="flex items-center gap-2">
+                    ${product.colors.map(c => `
+                      <button onclick="setCardColor('${product.id}', '${c.name}', '${c.hex}')" title="${c.name}"
+                        class="w-6 h-6 rounded-full border-2 transition-transform cursor-pointer ${state.color === c.name ? 'border-nexo-cyanBright scale-110' : 'border-zinc-600 opacity-75 hover:opacity-100'}"
+                        style="background-color: ${c.hex};">
+                      </button>
+                    `).join('')}
+                  </div>
+                </div>
+
+                <!-- Size Pills -->
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-mono text-zinc-400">Talle:</span>
+                  <div class="flex items-center gap-1.5" id="sizes-${product.id}">
+                    ${product.sizes.map(sz => `
+                      <button onclick="setCardSize('${product.id}', '${sz}')"
+                        class="w-8 h-8 rounded-lg text-xs font-bold border transition-all cursor-pointer ${state.size === sz ? 'bg-nexo-violet/20 border-nexo-violet text-white' : 'bg-nexo-black border-nexo-border text-zinc-400 hover:text-white'}">
+                        ${sz}
+                      </button>
+                    `).join('')}
+                  </div>
+                </div>
+
+                <!-- Add to Cart Button -->
+                <button onclick="addToCart('${product.id}')" class="w-full py-3.5 rounded-xl bg-white hover:bg-nexo-cyanBright text-black font-heading font-extrabold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer">
+                  <i data-lucide="plus" class="w-4 h-4"></i>
+                  Agregar al pedido
+                </button>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join('');
+
+      lucide.createIcons();
+    }
+
+    // Card Interaction Handlers
+    function setCardView(productId, view) {
+      cardState[productId].view = view;
+      const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
+      renderProducts(activeFilter);
+    }
+
+    function setCardColor(productId, colorName, colorHex) {
+      cardState[productId].color = colorName;
+      cardState[productId].colorHex = colorHex;
+      const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
+      renderProducts(activeFilter);
+    }
+
+    function setCardSize(productId, size) {
+      cardState[productId].size = size;
+      const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
+      renderProducts(activeFilter);
+    }
+
+    function filterProducts(category) {
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        if (btn.dataset.filter === category) {
+          btn.classList.add('active', 'bg-nexo-violet', 'text-white');
+          btn.classList.remove('bg-nexo-card', 'text-zinc-400', 'border', 'border-nexo-border');
+        } else {
+          btn.classList.remove('active', 'bg-nexo-violet', 'text-white');
+          btn.classList.add('bg-nexo-card', 'text-zinc-400', 'border', 'border-nexo-border');
+        }
+      });
+      renderProducts(category);
+    }
+
+    // ==========================================
+    // 4. CART & CUSTOM ORDER LOGIC
+    // ==========================================
+    function addToCart(productId) {
+      const product = products.find(p => p.id === productId);
+      const state = cardState[productId];
+      const itemKey = `${product.id}-${state.color}-${state.size}`;
+
+      const existing = cart.find(item => item.key === itemKey);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({
+          key: itemKey,
+          name: product.name,
+          price: product.price,
+          color: state.color,
+          size: state.size,
+          qty: 1,
+          isCustom: false
+        });
+      }
+
+      updateCartUI();
+      showToast(`Agregaste "${product.name}" (Talle ${state.size}) a tu pedido.`);
+    }
+
+    function addCustomProduct(event) {
+      event.preventDefault();
+      const form = event.target;
+      const color = form.customColor.value;
+      const size = form.customSize.value;
+      const vibe = form.customVibe.value;
+      const idea = document.getElementById('customIdea').value.trim();
+
+      if (!idea) return;
+
+      const customItem = {
+        key: `custom-${Date.now()}`,
+        name: `Remera Custom (${vibe})`,
+        price: 17500,
+        color: color,
+        size: size,
+        qty: 1,
+        isCustom: true,
+        customNote: idea
+      };
+
+      cart.push(customItem);
+      form.reset();
+      updateCartUI();
+      toggleCart(true);
+      showToast('¡Diseño personalizado agregado a tu pedido!');
+    }
+
+    function updateItemQty(key, delta) {
+      const index = cart.findIndex(item => item.key === key);
+      if (index === -1) return;
+
+      cart[index].qty += delta;
+      if (cart[index].qty <= 0) {
+        cart.splice(index, 1);
+      }
+      updateCartUI();
+    }
+
+    function calculateTotals() {
+      const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+      const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+      // Promo Estudiantes: 10% OFF carrying 2 or more garments
+      const hasDiscount = totalItems >= 2;
+      const discount = hasDiscount ? Math.round(subtotal * 0.10) : 0;
+      const total = subtotal - discount;
+
+      return { totalItems, subtotal, hasDiscount, discount, total };
+    }
+
+    function updateCartUI() {
+      const { totalItems, subtotal, hasDiscount, discount, total } = calculateTotals();
+      
+      // Update Navbar Badge
+      document.getElementById('cart-badge').textContent = totalItems;
+
+      const itemsContainer = document.getElementById('cart-items-container');
+      const giftBanner = document.getElementById('gift-banner');
+      const deliverySection = document.getElementById('delivery-section');
+      const cartFooter = document.getElementById('cart-footer');
+
+      if (cart.length === 0) {
+        itemsContainer.innerHTML = `
+          <div class="text-center py-12 space-y-3">
+            <div class="w-14 h-14 rounded-2xl bg-nexo-black border border-nexo-border flex items-center justify-center mx-auto text-zinc-500">
+              <i data-lucide="shopping-bag" class="w-6 h-6"></i>
+            </div>
+            <p class="text-sm font-medium text-zinc-300">Tu pedido está vacío</p>
+            <p class="text-xs text-zinc-500 max-w-xs mx-auto">Elegí remeras oversize o hoodies del Drop 01 para armar tu combo con stickers de regalo.</p>
+          </div>
+        `;
+        giftBanner.classList.add('hidden');
+        deliverySection.classList.add('hidden');
+        cartFooter.classList.add('hidden');
+        lucide.createIcons();
+        return;
+      }
+
+      // Show sections
+      giftBanner.classList.remove('hidden');
+      deliverySection.classList.remove('hidden');
+      cartFooter.classList.remove('hidden');
+
+      // Update promo status text
+      const promoText = document.getElementById('promo-status-text');
+      if (hasDiscount) {
+        promoText.innerHTML = `<span class="text-nexo-cyanBright font-semibold">¡Promo Estudiantes activada! Tenés 10% OFF en tu compra.</span>`;
+      } else {
+        promoText.textContent = 'Sumá 1 prenda más y activá automáticamente el 10% OFF.';
+      }
+
+      // Render Items
+      itemsContainer.innerHTML = cart.map(item => `
+        <div class="p-3.5 rounded-2xl bg-nexo-black border border-nexo-border flex items-start justify-between gap-3">
+          <div class="space-y-1">
+            <h4 class="font-heading font-bold text-sm text-white">${item.name}</h4>
+            <p class="text-xs text-zinc-400">Color: <span class="text-zinc-200">${item.color}</span> • Talle: <span class="text-nexo-cyanBright font-bold">${item.size}</span></p>
+            ${item.customNote ? `<p class="text-[11px] text-nexo-violet bg-nexo-violet/10 px-2 py-1 rounded-md mt-1">"${item.customNote}"</p>` : ''}
+            <p class="text-xs font-mono text-zinc-300 pt-1">$${(item.price * item.qty).toLocaleString('es-AR')} ARS</p>
+          </div>
+
+          <div class="flex items-center gap-1.5 bg-nexo-card border border-nexo-border rounded-xl p-1">
+            <button onclick="updateItemQty('${item.key}', -1)" class="w-7 h-7 rounded-lg hover:bg-zinc-800 flex items-center justify-center text-zinc-300 cursor-pointer">-</button>
+            <span class="text-xs font-bold w-5 text-center">${item.qty}</span>
+            <button onclick="updateItemQty('${item.key}', 1)" class="w-7 h-7 rounded-lg hover:bg-zinc-800 flex items-center justify-center text-zinc-300 cursor-pointer">+</button>
+          </div>
+        </div>
+      `).join('');
+
+      // Update Totals
+      document.getElementById('cart-subtotal').textContent = `$${subtotal.toLocaleString('es-AR')} ARS`;
+      const discountRow = document.getElementById('discount-row');
+      if (hasDiscount) {
+        discountRow.classList.remove('hidden');
+        document.getElementById('cart-discount').textContent = `-$${discount.toLocaleString('es-AR')} ARS`;
+      } else {
+        discountRow.classList.add('hidden');
+      }
+      document.getElementById('cart-total').textContent = `$${total.toLocaleString('es-AR')} ARS`;
+
+      lucide.createIcons();
+    }
+
+    // ==========================================
+    // 5. WHATSAPP & CLIPBOARD ORDER EXPORT
+    // ==========================================
+    function buildOrderSummaryText() {
+      const { subtotal, hasDiscount, discount, total } = calculateTotals();
+      const deliveryInput = document.querySelector('input[name="deliveryMethod"]:checked');
+      const delivery = deliveryInput ? deliveryInput.value : 'A coordinar';
+      const customerName = document.getElementById('customer-name').value.trim();
+
+      let lines = [
+        `⚡ *NUEVO PEDIDO — NEXO STREETWEAR* ⚡`,
+        customerName ? `👤 *Cliente:* ${customerName}` : null,
+        `--------------------------------`,
+        ...cart.map(item => {
+          let line = `• ${item.qty}x *${item.name}* | Color: ${item.color} | Talle: ${item.size} ($${(item.price * item.qty).toLocaleString('es-AR')})`;
+          if (item.customNote) line += `\n   ↳ _Idea custom:_ ${item.customNote}`;
+          return line;
+        }),
+        `--------------------------------`,
+        `🎁 *Regalo:* Pack de Stickers NEXO + Bolsa Ziplock`,
+        hasDiscount ? `🔥 *Promo Estudiantes (10% OFF):* -$${discount.toLocaleString('es-AR')}` : null,
+        `💰 *TOTAL A PAGAR:* $${total.toLocaleString('es-AR')} ARS`,
+        `📍 *Entrega:* ${delivery}`
+      ].filter(Boolean);
+
+      return lines.join('\n');
+    }
+
+    function sendOrderWhatsApp() {
+      if (cart.length === 0) return;
+      const text = encodeURIComponent(buildOrderSummaryText());
+      // Opens WhatsApp share/chat with pre-filled order message
+      window.open(`https://wa.me/?text=${text}`, '_blank', 'noopener,noreferrer');
+    }
+
+    function copyOrderToClipboard() {
+      if (cart.length === 0) return;
+      const text = buildOrderSummaryText();
+      const helper = document.getElementById('clipboard-helper');
+      helper.value = text;
+      helper.select();
+      try {
+        document.execCommand('copy');
+        showToast('¡Resumen copiado! Pegalo en nuestro DM de Instagram @nexo.streetwear');
+      } catch (err) {
+        showToast('No se pudo copiar automáticamente. Revisá tu pedido.');
+      }
+    }
+
+    function updateOrderPreview() {
+      // Keeps dynamic form state synced
+    }
+
+    // ==========================================
+    // 6. UI DRAWERS & CUSTOM TOAST NOTIFICATIONS
+    // ==========================================
+    function toggleCart(open) {
+      const overlay = document.getElementById('cart-overlay');
+      const drawer = document.getElementById('cart-drawer');
+      if (open) {
+        overlay.classList.remove('hidden');
+        drawer.classList.remove('translate-x-full');
+      } else {
+        overlay.classList.add('hidden');
+        drawer.classList.add('translate-x-full');
+      }
+    }
+
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('hidden');
+    }
+
+    function showToast(message) {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      toast.className = 'bg-nexo-card border border-nexo-cyan/60 text-white px-4 py-3 rounded-2xl shadow-2xl flex items-center gap-3 text-xs sm:text-sm font-medium transition-all duration-300 transform translate-y-2 opacity-0';
+      toast.innerHTML = `
+        <span class="w-2 h-2 rounded-full bg-nexo-cyanBright shrink-0"></span>
+        <span>${message}</span>
+      `;
+      container.appendChild(toast);
+
+      requestAnimationFrame(() => {
+        toast.classList.remove('translate-y-2', 'opacity-0');
+      });
+
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'translate-y-2');
+        setTimeout(() => toast.remove(), 300);
+      }, 3200);
+    }
+
+    // Initialize on load
+    window.addEventListener('DOMContentLoaded', () => {
+      renderProducts('all');
+      updateCartUI();
+      lucide.createIcons();
+    });
+  </script>
+</body>
+</html>
